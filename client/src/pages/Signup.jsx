@@ -3,27 +3,28 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { FcGoogle } from "react-icons/fc";
 
 
 
 const Signup = () => {
   const [data,setdata]=useState('')
- const[ddata,setddata]=useState([''])
   const[done,setdone]=useState(true)
   const[success,setsuccess]=useState()
 
-  useEffect(()=>{
-    let fetchdata=async()=>{
-      try{
-         let response=await axios.get('http://localhost:4000/fetch')
-         console.log(response.data);
-         setddata(response.data)
-    }catch(error){
-      console.error('error fetching data',error);
-    }
-    }
-    fetchdata()
-  },[done])
+  useEffect(() => {
+    let fetchdata = async () => {
+      try {
+        let response = await axios.get('http://localhost:5000/fetch');
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+   
+    fetchdata();
+  }, [done]);
+  
 
   //handlechange
 
@@ -39,7 +40,8 @@ const Signup = () => {
   
     try {
       let newdata = { ...data };
-      let response = await axios.post('http://localhost:4000/login', newdata);
+      console.log(newdata);
+      let response = await axios.post('http://localhost:5000/add', newdata);
   
       console.log(response.data.status);
       setdone(!done);
@@ -59,48 +61,53 @@ const Signup = () => {
   };
   
   return (
-    <div className='flex items-center justify-center mt-28 bg-blue-300'>
-      <div className='rounded-md bg-white p-3 w-auto'>
+    <div className="flex justify-center items-center h-screen">
+      <div className='justify-center items-center rounded-md shadow-2xl bg-white p-3 w-64'>
         <h2 className='text-xl font-bold mb-2'>Signup</h2>
-    <form onSubmit={handlesubmit} className='flex flex-col'>
-      <div className='mb-3 flex flex-col'>
-         <label>Username</label>
-           <input
-             type='text' 
-             onChange={handlechange} 
-             name='username' 
-             placeholder='Enter Username'
-             className='border'/>
+        <form onSubmit={handlesubmit} className='flex flex-col'>
+          <div className='mb-3 flex flex-col'>
+            <label>Username</label>
+            <input
+              type='text' 
+              onChange={handlechange} 
+              name='username' 
+              placeholder='Enter Username'
+              className='border'
+            />
+          </div>
+          <div className='mb-3 flex flex-col'>
+            <label>E-mail</label>
+            <input 
+              type='email' 
+              onChange={handlechange} 
+              name='email' 
+              placeholder='Enter Email'
+              className=' border'
+            />
+          </div>
+          <div className='mb-3 flex flex-col'>
+            <label>Password</label>
+            <input 
+              type='password' 
+              onChange={handlechange} 
+              name='password' 
+              placeholder='Enter Password'
+              className='border'
+            />
+          </div>
+          <button type='submit' className='rounded p-1 w-56 bg-indigo-700 text-white'>Get started</button>
+          <p>Already have an Account?<Link to={'/login'} className='text-indigo-700'>Log in</Link></p>
+        </form>
+        
+        {success ?
+          <h2>Inserted successfully</h2>
+          : success === false &&
+          <h2>Not successful</h2>
+        }
       </div>
-      <div className='mb-3 flex flex-col'>
-          <label>E-mail</label>
-          <input 
-            type='email' 
-            onChange={handlechange} 
-            name='email' 
-            placeholder='Enter Email'
-            className=' border'/>
-       </div>
-       <div className='mb-3 flex flex-col'>
-          <label>Password</label>
-          <input 
-            type='password' 
-            onChange={handlechange} 
-            name='password' 
-            placeholder='Enter Password'
-            className='border'/>
-       </div>
-        <button type='submit' className='rounded p-1 bg-blue-400 text-white'>Signup</button>
-        <p>Already have an Account?</p>
-        <Link to={'/login'}><button className='rounded p-1 bg-blue-400 text-white w-52'>Login</button></Link>
-    </form>
-    {
-
-    }
     </div>
-</div>
-
-  )
+  );
+  
 }
 
 export default Signup

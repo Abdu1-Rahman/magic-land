@@ -1,15 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const db = require('mongodb');
+const db = require('./mongo');
+
 
 router.get('/fetch', async (req, res) => {
     try {
-        const client = await db.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
-        const dbInstance = client.db(dbName);
-        const collection = dbInstance.collection('user');
-
-        // Fetch all user documents
-        const users = await collection.find({}).toArray();
+        let users = await db.collection('user').find().toArray();
+        console.log(users);
 
         res.json({ success: true, users });
     } catch (error) {
@@ -18,24 +15,17 @@ router.get('/fetch', async (req, res) => {
     }
 });
 
-router.post('/login', async (req, res) => {
-    try {
-        const client = await db.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
-        const dbInstance = client.db(dbName);
-        const collection = dbInstance.collection('user');
-        const userData = req.body;
-        const result = await collection.insertOne(userData);
 
-        console.log('User inserted with _id:', result.insertedId);
-        res.json({ success: true, message: 'User data saved successfully' });
-    } catch (error) {
-        console.error('Error saving user data:', error);
-        res.status(500).json({ success: false, message: 'Internal Server Error' });
+router.post('/add',(req, res) => {
+    console.log(req.body);
+    try{
+
+        db.collection('user').insertOne(req.body)
+        res.json({status:true})
+    }catch(err){
+        console.log(err); 
     }
-});
 
-router.use((req, res) => {
-    res.status(404).json({ success: false, message: 'Not Found' });
 });
 
 module.exports = router;

@@ -1,0 +1,10 @@
+@media only screen and (max-width: 768px) {
+.toggle{
+    position: absolute;
+    z-index: 10;
+    top: 70px;
+    justify-content: end;
+    right: 3px;
+    background-color: aliceblue;
+}
+}
