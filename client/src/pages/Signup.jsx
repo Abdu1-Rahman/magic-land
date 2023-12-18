@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { FcGoogle } from "react-icons/fc";
 
 
 

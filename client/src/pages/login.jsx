@@ -14,8 +14,11 @@ const Login = () => {
     
   }
 
+  // const navigate = useNavigate()
+
   let handlesubmit=async(event)=>{
     event.preventDefault()
+
     let response=await axios.post('http://localhost:5000/admin/login',data)
     console.log(response.data.status);
     if(response.data.status){
@@ -71,7 +74,7 @@ const Login = () => {
      
      <h2 className='text-red-500'>invalid username or password!</h2>
      }
-      <Link to={'/adminpage'}><button type='submit' className='rounded p-1 bg-indigo-700 text-white w-56'>Login</button></Link>
+      <Link to={'/dashboard'}><button type='submit' className='rounded p-1 bg-indigo-700 text-white w-56'>Login</button></Link>
   </form>
   </div>
 </div>

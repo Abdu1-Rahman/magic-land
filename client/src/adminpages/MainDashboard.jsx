@@ -1,11 +1,13 @@
 import React from 'react'
 import AdminNavbar from '../admincomponents/AdminNavbar'
+import SearchBox from '../admincomponents/SearchBox'
 
 const MainDashboard = () => {
   return (
-    <div>
+    <div className='flex'>
       <AdminNavbar/>
-      <h1>MainDashboard</h1>
+      
+      <SearchBox/>
     </div>
   )
 }
