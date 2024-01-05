@@ -43,10 +43,10 @@ const SearchBox = () => {
 //     </div>
 //   )
   return (
-    <header className="fixed ml-64 top-7 w-full p-4 bg-opacity-20 backdrop-blur-lg bg-blue-100 h-24">
+    <header className="fixed ml-64 w-full p-4 bg-opacity-20 backdrop-blur-lg bg-blue-100 h-22">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
-          <div className=" font-bold text-xl text-indigo-700">Your Logo</div>
+          <div className=" font-bold text-xl text-indigo-400">Manage Property</div>
          
         </div>
       </div>

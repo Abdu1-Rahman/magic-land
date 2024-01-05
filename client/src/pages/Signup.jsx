@@ -38,8 +38,9 @@ const Signup = () => {
     event.preventDefault();
   
     try {
-      let newdata = { ...data };
+      let newdata = { ...data,['type']:'user' };
       console.log(newdata);
+      
       let response = await axios.post('http://localhost:5000/add', newdata);
   
       console.log(response.data.status);
@@ -93,6 +94,7 @@ const Signup = () => {
               placeholder='Enter Password'
               className='border'
             />
+             
           </div>
           <button type='submit' className='rounded p-1 w-56 bg-indigo-700 text-white'>Get started</button>
           <p>Already have an Account?<Link to={'/login'} className='text-indigo-700'>Log in</Link></p>

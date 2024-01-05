@@ -10,13 +10,13 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <div className='bg-indigo-300 relative'>
-        <img src={land2} alt='pics' className='h-64 w-full object-cover blur-sm'></img>
+      <div className='relative'>
+        <img src={land2} alt='pics' className='h-64 w-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-110 overflow-hidden'></img>
         <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center">
           <input
             type="search"
             id="default-search"
-            className="block w-full p-2.5 g-lg-5 ps-10 text-sm border border-gray-300 rounded-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-white-700 dark:border-indigo-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-2.5 g-lg-5 ps-10 text-sm border border-gray-300 rounded-full bg-gray-50 outline-none"
             placeholder="Search"
             required
           />
@@ -44,7 +44,7 @@ const Home = () => {
       </div>
       
 <div className='flex'>
-<div className="w-72 mt-10 ml-8 bg-white border border-gray-200 rounded-lg shadow">
+<div className="w-72 mt-10 ml-16 bg-white border border-gray-200 rounded-lg shadow">
     <a href="#">
         <img className="rounded-t-lg" src={land3} alt="" />
     </a>
@@ -112,7 +112,9 @@ const Home = () => {
             </svg>
         </a>
     </div>
+    
 </div>
+
 
 </div>
 <Footer/>

@@ -11,10 +11,10 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className='shadow-md'>
       <nav className="bg-white border-gray-200">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <img src={MagicLand} className='flex items-center justify-center mb-2 md:mb-0 h-12 w-52' alt="Magic Land Logo" />
+          <img src={MagicLand} className='mb-2 md:mb-0 h-16 w-52 aspect-square object-contain' alt="Magic Land Logo" />
           <button
             onClick={toggleDropdown}
             type="button"
@@ -29,7 +29,7 @@ const Navbar = () => {
           <div className={`toggle items-center gap-3  ${showDropdown && 'hidden'}`}>
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
               <li>
-                <Link to="#" className="block py-2 px-3 text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 hover:text-black" aria-current="page">Home</Link>
+                <Link to={'/'} className="block py-2 px-3 text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 hover:text-black" aria-current="page">Home</Link>
               </li>
               <li>
                 <Link to="#" className="block py-2 px-3 text-blue-700 rounded md:hover:bg-transparent md:border-0 hover:text-black md:p-0">About</Link>
@@ -41,7 +41,7 @@ const Navbar = () => {
                 <Link to="#" className="block py-2 px-3 text-blue-700 rounded md:hover:bg-transparent md:border-0 hover:text-black md:p-0">Pricing</Link>
               </li>
               <li>
-                <Link to="#" className="block py-2 px-3 text-blue-700 rounded md:hover:bg-transparent md:border-0 hover:text-black md:p-0">Contact</Link>
+                <Link to={'/contact'} className="block py-2 px-3 text-blue-700 rounded md:hover:bg-transparent md:border-0 hover:text-black md:p-0">Contact</Link>
               </li>
               
               <li>

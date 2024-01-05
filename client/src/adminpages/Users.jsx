@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminNavbar from '../admincomponents/AdminNavbar';
+import axios from 'axios';
 
 const Users = () => {
+
+  const[users,setUsers] = useState([])
+   
+  useEffect(()=>{
+    let fetchUser = async() =>{
+      let user =await axios.get('http://localhost:5000/admin/Getusers')
+      console.log(user)
+      setUsers(user.data);
+ }
+ fetchUser();
+ },[])
+
   return (
     <div className='flex'>
       <AdminNavbar/>
-      <div className="text-gray-900 bg-gray-200 w-full">
+      <div className="text-gray-900 bg-gray-200 w-full ml-64">
         <div className="p-4 flex">
           <h1 className="text-3xl">Users</h1>
         </div>
@@ -20,13 +33,13 @@ const Users = () => {
               </tr>
               <tr className="border-b hover:bg-orange-100 bg-gray-100">
                 <td className="p-3 px-5">
-                  <input type="text" value={user.name} className="bg-transparent" />
+                  <input type="text" className="bg-transparent" />
                 </td>
                 <td className="p-3 px-5">
-                  <input type="text" value={user.email} className="bg-transparent" />
+                  <input type="text"  className="bg-transparent" />
                 </td>
                 <td className="p-3 px-5">
-                  <select value={user.role} className="bg-transparent">
+                  <select  className="bg-transparent">
                     <option value="user">user</option>
                     <option value="admin">admin</option>
                   </select>
@@ -46,7 +59,17 @@ const Users = () => {
                   </button>
                 </td>
               </tr>
-              {/* ... (Repeat the structure for other rows) */}
+              {
+                users.map(user => {
+                 return(
+                   <tr>
+                    <td>{user.username}</td>
+                    <td>{user.email}</td>
+                    <td>{user.type}</td>
+                  </tr>
+                )})
+
+              }
             </tbody>
           </table>
         </div>

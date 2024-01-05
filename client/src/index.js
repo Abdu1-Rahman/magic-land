@@ -8,6 +8,10 @@ import Home from './pages/Home'
 import MainDashboard from './adminpages/MainDashboard'
 import Settings from './adminpages/Settings'
 import Users from './adminpages/Users';
+import Profile from './adminpages/Profile';
+import ManageProperty from './adminpages/ManageProperty';
+import Contact from './pages/Contact';
+import Update from './adminpages/Update';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,9 +21,13 @@ root.render(
           <Route path='/' element= { <Home/> }/>
           <Route path='/signup' element = { <Signup/> }/>
           <Route path='/login' element= { < Login/> }/>
+          <Route path='/contact' element= { <Contact/> }/>
           <Route path='/dashboard' element={<MainDashboard/>}/>
+          <Route path='/manageproperty' element={<ManageProperty/>}/>
+          <Route path="/update/:id" element={<Update/>}/>
           <Route path='/users' element={<Users/>}/>
           <Route path='/settings' element={<Settings/>}/>
+          <Route path='/profile' element={<Profile/>}/>
         </Routes>
       </Router>
   </React.StrictMode>
