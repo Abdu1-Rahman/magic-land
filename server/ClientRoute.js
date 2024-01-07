@@ -28,6 +28,17 @@ router.post('/add',(req, res) => {
 
 });
 
+router.get('/Getproperty',async (req,res) => {
+    try{
+    let propertys =await db.collection('property').find().toArray()
+    console.log(propertys);
+    res.json({success: true, propertys})
+}catch (error) {
+    console.log("Error in displaying properties",error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+}
+})
+
 
 
 module.exports = router;

@@ -6,14 +6,18 @@ const Users = () => {
 
   const[users,setUsers] = useState([])
    
-  useEffect(()=>{
-    let fetchUser = async() =>{
-      let user =await axios.get('http://localhost:5000/admin/Getusers')
-      console.log(user)
-      setUsers(user.data);
- }
- fetchUser();
- },[])
+  useEffect(() => {
+    let fetchUser = async () => {
+      try {
+        let user = await axios.get('http://localhost:5000/admin/Getusers');
+        console.log(user);
+        setUsers(user.data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    }
+    fetchUser();
+  }, []);
 
   return (
     <div className='flex'>
@@ -31,20 +35,18 @@ const Users = () => {
                 <th className="text-left p-3 px-5">Role</th>
                 <th></th>
               </tr>
-              <tr className="border-b hover:bg-orange-100 bg-gray-100">
-                <td className="p-3 px-5">
-                  <input type="text" className="bg-transparent" />
-                </td>
-                <td className="p-3 px-5">
-                  <input type="text"  className="bg-transparent" />
-                </td>
-                <td className="p-3 px-5">
-                  <select  className="bg-transparent">
+              {
+                users.map(user => {
+                 return(
+                   <tr className='border-b hover:bg-orange-100 bg-gray-100'>
+                    <td className='p-3 px-5'>{user.username}</td>
+                    <td className='p-3 px-5'>{user.email}</td>
+                    <td className='p-3 px-5'><select  className="bg-transparent">
                     <option value="user">user</option>
                     <option value="admin">admin</option>
                   </select>
-                </td>
-                <td className="p-3 px-5 flex justify-end">
+                  </td>
+                  <td className="p-3 px-5 flex justify-end">
                   <button
                     type="button"
                     className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
@@ -58,14 +60,6 @@ const Users = () => {
                     Delete
                   </button>
                 </td>
-              </tr>
-              {
-                users.map(user => {
-                 return(
-                   <tr>
-                    <td>{user.username}</td>
-                    <td>{user.email}</td>
-                    <td>{user.type}</td>
                   </tr>
                 )})
 

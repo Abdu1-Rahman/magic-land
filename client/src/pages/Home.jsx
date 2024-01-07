@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import  land2  from '../assets/land2.jpg'
 import land3 from '../assets/land3.jpg'
 import land4 from '../assets/land4.jpg'
 import land6 from '../assets/land6.jpg'
 import Footer from '../components/Footer'
+import axios from 'axios'
 
 const Home = () => {
+    const[propertys,setPropertys] = useState([])
+   
+    useEffect(() => {
+      let fetchProperty = async () => {
+        try {
+          let property = await axios.get('http://localhost:5000/Getproperty');
+          console.log(property);
+          setPropertys(property.data);
+        } catch (error) {
+          console.error("Error fetching property:", error);
+        }
+      }
+      fetchProperty();
+    }, []);
+
   return (
     <div>
       <Navbar />
@@ -43,7 +59,7 @@ const Home = () => {
         </div>
       </div>
       
-<div className='flex'>
+{/* <div className='flex'>
 <div className="w-72 mt-10 ml-16 bg-white border border-gray-200 rounded-lg shadow">
     <a href="#">
         <img className="rounded-t-lg" src={land3} alt="" />
@@ -116,6 +132,15 @@ const Home = () => {
 </div>
 
 
+</div> */}
+<div>
+{
+    propertys.map(property => {
+        return (
+            <h2>{property.Location}</h2>
+        )
+    })
+}
 </div>
 <Footer/>
     </div>

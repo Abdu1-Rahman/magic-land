@@ -71,11 +71,15 @@ router.put('/edit/:id', async (req, res) => {
     }
   });
 
-  router.get('/getusers/:id',async (req,res)=>{
-    db.find()
-    .then(user => res.json(user))
-    .catch(err => res.json(err))
-})
+  router.get('/Getusers', async (req, res) => {
+    try {
+      const users = await db.collection('user').find().toArray();
+      res.json(users);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
 
 
 
