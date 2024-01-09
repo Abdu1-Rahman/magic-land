@@ -98,7 +98,30 @@ fetchProperty()
                 <h2>Not successful</h2>
             }
 
-            <div className='flex' >
+
+
+<div className='flex'>
+        {properties.map((item)=>(
+         <div key={item._id} className="w-72 mt-10 ml-8 bg-white border border-gray-200 rounded-lg shadow">
+          <a href="#">
+           <img className="rounded-t-lg" src={item.file} alt="" />
+          </a>
+        <div className="p-5">
+          <a href="#">
+            <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">{item.Location}</h5>
+          </a>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{item.Price}</p>
+        <h2>{item.description}</h2>
+                        <Link to={`/update/${item._id}`}>
+                               <button className='bg-indigo-700 text-white rounded p-1 mr-2'>edit</button>
+                        </Link>
+                        <button className='bg-indigo-700 text-white rounded p-1' onClick={() => { handledelete(item._id) }}>delete</button>
+       </div>
+     </div>
+     ))}
+     </div>
+
+            {/* <div className='flex' >
                 {properties.map((item) => (
                     <div key={item._id} className='w-fit p-5  text-gray-500 m-auto text-center mt-4 mb-3 shadow-xl'>
                         <img src={item.file} className='w-28 h-28' alt="" />
@@ -111,7 +134,7 @@ fetchProperty()
                         <button className='bg-indigo-700 text-white rounded p-1' onClick={() => { handledelete(item._id) }}>delete</button>
                     </div>
                 ))}
-            </div>
+            </div> */}
             </div>
         </div>
     );

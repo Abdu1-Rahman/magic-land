@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { /* Link */ useNavigate } from 'react-router-dom'
 
 const Login = () => {
  
@@ -21,11 +21,11 @@ const Login = () => {
 
     let response=await axios.post('http://localhost:5000/admin/login',data)
     console.log(response);
-    if(response.data.type=='user'){
+    if(response.data.type==='user'){
       navigate('/')
       
     }
-    else if(response.data.type=='admin'){
+    else if(response.data.type==='admin'){
       
       navigate('/dashboard')
    }

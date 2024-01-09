@@ -3,6 +3,14 @@ const db = require('./mongo')
 const { default: mongoose } = require('mongoose')
 const router=express()
 
+// Define the Property model
+const Property = mongoose.model('Property', new mongoose.Schema({
+  // Define your schema fields here
+  Location: String,
+  Price: String,
+  description: String,
+  file: String // Assuming 'file' is a string field; adjust as needed
+}));
 
 router.post('/login',async (req,res)=>{
     console.log(req.body)

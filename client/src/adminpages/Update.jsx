@@ -16,7 +16,7 @@ const Update = () => {
     const [data, setdata] = useState();
     const [success, setsuccess] = useState();
     const [done, setdone] = useState(true);
-    const [Rdata,setRdata]=useState([''])
+   /*  const [Rdata,setRdata]=useState(['']) */
     const [properties, setproperties] = useState('')
 
     useEffect(()=>{
@@ -26,7 +26,9 @@ const Update = () => {
         setproperties(property.data)
 }
 fetchProperty()
-},[done])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+},[done])// 'id' is intentionally excluded from the dependency array
+
 
 
     // handlechange
@@ -46,33 +48,19 @@ fetchProperty()
             file: image
         };
         console.log(newdata);
-        let response = await axios.post('http://localhost:5000/admin/property', newdata);
+      /*   let response = await axios.post(`http://localhost:5000/admin/property/edit/${id}`, newdata); */
+      let response = await axios.put(`http://localhost:5000/admin/edit/${id}`, newdata);
         console.log(response.data.status);
         setdone(!done);
         if (response.data.status) {
-            toast.success('added successfully')
+            toast.success('update successfully')
         } else {
-             toast.error('failed')
+             toast.error('oops! failed to update')
              setsuccess(false);
         }
     };
 
-    // handledelete
-
-    let handledelete=async (id)=>{
-        console.log(id);
-        try{
     
-            await axios.delete(`http://localhost:5000/admin/property/${id}`)
-            toast('successful')
-            setdone(!done)
-    
-        }
-        catch(err){
-            console.log(err);
-        }
-    }
-
     return (
         <div className='flex'>
             <ToastContainer/>
