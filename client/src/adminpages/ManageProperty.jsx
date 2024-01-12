@@ -72,14 +72,13 @@ fetchProperty()
     }
 
     return (
-        <div className='flex'>
-            <ToastContainer/>
-            <AdminNavbar />
-            <SearchBox/>
-            <div className='flex flex-col mt-8 ml-96'>
+        <div className='flex flex-col sm:flex-row'>
+        <ToastContainer />
+        <AdminNavbar />
+        <SearchBox />
+        <div className='flex flex-col sm:mt-8 sm:ml-96'>
             <form className='flex flex-col gap-2 items-center justify-center m-10 shadow-xl' onSubmit={handlesubmit}>
-               
-                    <img src={image} alt='real estate' className='w-28 h-28'/>
+            <img src={image} alt='real estate' className='w-28 h-28'/>
                      <input className='border border-solid border-indigo-700 outline-none' type="text" onChange={handlechange} name='Location' placeholder='Location' />
                      <input className='border border-solid border-indigo-700 outline-none' type="text" onChange={handlechange} name='Price' placeholder='Price' />
                      <input className='border border-solid border-indigo-700 outline-none' type="text" onChange={handlechange} name='description' placeholder='description' />
@@ -91,18 +90,15 @@ fetchProperty()
 
                 <input className='text-white bg-blue-500 rounded p-1' type="submit" />
             </form>
-            {success ?
+            {success ? (
                 <h2>Inserted successfully</h2>
-                :
-                success === false &&
+            ) : success === false && (
                 <h2>Not successful</h2>
-            }
+            )}
 
-
-
-<div className='flex'>
-        {properties.map((item)=>(
-         <div key={item._id} className="w-72 mt-10 ml-8 bg-white border border-gray-200 rounded-lg shadow">
+            <div className='flex flex-wrap'>
+                {properties.map((item) => (
+                    <div key={item._id} className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mt-10 ml-8 bg-white border border-gray-200 rounded-lg shadow'>
           <a href="#">
            <img className="rounded-t-lg" src={item.file} alt="" />
           </a>
@@ -120,21 +116,6 @@ fetchProperty()
      </div>
      ))}
      </div>
-
-            {/* <div className='flex' >
-                {properties.map((item) => (
-                    <div key={item._id} className='w-fit p-5  text-gray-500 m-auto text-center mt-4 mb-3 shadow-xl'>
-                        <img src={item.file} className='w-28 h-28' alt="" />
-                        <h2>{item.Location}</h2>
-                        <h2>{item.Price}</h2>
-                        <h2>{item.description}</h2>
-                        <Link to={`/update/${item._id}`}>
-                               <button className='bg-indigo-700 text-white rounded p-1 mr-2'>edit</button>
-                        </Link>
-                        <button className='bg-indigo-700 text-white rounded p-1' onClick={() => { handledelete(item._id) }}>delete</button>
-                    </div>
-                ))}
-            </div> */}
             </div>
         </div>
     );
