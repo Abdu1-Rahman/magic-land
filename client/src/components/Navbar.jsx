@@ -4,7 +4,7 @@ import MagicLand from '../assets/MagicLand.png';
 import '../components/Navbar.css'
 
 const Navbar = () => {
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(true);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -26,29 +26,30 @@ const Navbar = () => {
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
             </svg>
           </button>
-          <div className={`toggle items-center gap-3  ${showDropdown && 'hidden'}`}>
-            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
-              <li>
-                <Link to={'/'} className="block py-2 px-3 text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 hover:text-black" aria-current="page">Home</Link>
-              </li>
-              <li>
-                <Link to="#" className="block py-2 px-3 text-blue-700 rounded md:hover:bg-transparent md:border-0 hover:text-black md:p-0">About</Link>
-              </li>
-              <li>
-                <Link to="#" className="block py-2 px-3 text-blue-700 rounded md:hover:bg-transparent md:border-0 hover:text-black md:p-0">Services</Link>
-              </li>
-              <li>
-                <Link to="#" className="block py-2 px-3 text-blue-700 rounded md:hover:bg-transparent md:border-0 hover:text-black md:p-0">Pricing</Link>
-              </li>
-              <li>
-                <Link to={'/contact'} className="block py-2 px-3 text-blue-700 rounded md:hover:bg-transparent md:border-0 hover:text-black md:p-0">Contact</Link>
-              </li>
-              
-              <li>
-                <Link to={'/signup'}> <button className="flex items-center justify-center md:mt-0 mr-3 px-3 py-1 md:px-4 md:py-2 h-9 w-auto text-blue-700 hover:text-white transition duration-200 ease-out border-2 border-blue-700 rounded-md hover:bg-blue-700 hover:ease-in">SIGN IN</button></Link>
-              </li>
-            </ul>
-          </div>  
+          <div className={`toggle items-center md:gap-3 md:flex md:flex-row flex-col flex ${showDropdown && 'hidden'}`}>
+      <ul className="text-lg font-bold flex flex-col p-4 md:p-0 md:mr-80 mt-4 border w-44 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
+        <li>
+          <Link to={'/'} className="nav-link" aria-current="page">HOME</Link>
+        </li>
+        <li>
+          <Link to={'/about'} className="nav-link">ABOUT</Link>
+        </li>
+        <li>
+          <Link to="/services" className="nav-link">SERVICES</Link>
+        </li>
+        <li>
+          <Link to="#" className="nav-link">PRICING</Link>
+        </li>
+        <li>
+          <Link to={'/contact'} className="nav-link">CONTACT</Link>
+        </li>
+      </ul>
+      <Link to={'/signup'}>
+        <button className="flex items-center justify-center md:gap-10 md:mt-0 mr-3 px-3 md:px-4 md:py-2 h-9 text-xl w-auto text-blue-700 hover:text-white transition duration-200 ease-out border-2 border-blue-700 rounded-md hover:bg-blue-700 hover:ease-in ">
+          SIGN IN
+        </button>
+      </Link>
+    </div>
         </div>
       </nav>
     </div>

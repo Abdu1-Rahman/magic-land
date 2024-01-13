@@ -52,33 +52,6 @@ router.get('/edit/:id',async (req,res)=>{
     res.json(response)
 })
 
-/* router.put('/property2/:id',async (req,res)=>{
-    let id=new mongoose.Types.ObjectId(req.params.id)
-    let response=await db.collection('property').updateOne({_id:id},{$set:req.body})
-    res.json(response)
-}) */
-
-
-
-router.put('/edit/:id', async (req, res) => {
-    try {
-      let id = new mongoose.Types.ObjectId(req.params.id)
-  
-      // Update the property using Mongoose model and updateOne
-      let response = await Property.updateOne({ _id: id }, { $set: req.body });
-  
-      // Check if the property was found and updated
-      if (response.nModified === 0) {
-        return res.status(404).json({ error: 'Property not found or not modified' });
-      }
-
-      res.json(response);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  });
-
   router.get('/Getusers', async (req, res) => {
     try {
       const users = await db.collection('user').find().toArray();

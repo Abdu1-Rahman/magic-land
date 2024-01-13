@@ -12,6 +12,8 @@ import Profile from './adminpages/Profile';
 import ManageProperty from './adminpages/ManageProperty';
 import Contact from './pages/Contact';
 import Update from './adminpages/Update';
+import About from './pages/About';
+import Services from './pages/Services';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +23,8 @@ root.render(
           <Route path='/' element= { <Home/> }/>
           <Route path='/signup' element = { <Signup/> }/>
           <Route path='/login' element= { < Login/> }/>
+          <Route path='/about' element={<About />} />
+          <Route path='/services' element={<Services/>}/>
           <Route path='/contact' element= { <Contact/> }/>
           <Route path='/dashboard' element={<MainDashboard/>}/>
           <Route path='/manageproperty' element={<ManageProperty/>}/>

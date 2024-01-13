@@ -8,3 +8,24 @@
     background-color: aliceblue;
 }
 }
+
+.nav-link {
+    position: relative;
+    display: block;
+    padding: 2px 3px;
+    text-decoration: none;
+    color: #3182ce;
+    transition:width 5s ease-in;
+  }
+  
+  .nav-link:hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background-color: #000000; 
+    transition: width 2s ease-out;
+    width: 100%;
+  }
