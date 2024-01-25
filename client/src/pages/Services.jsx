@@ -7,11 +7,13 @@ import LegalSupport from '../assets/LegalSupport.jpg';
 import HomeSelling from '../assets/HomeSelling.jpg';
 import ConsultingService from '../assets/ConsultingService.jpg';
 import HomeBuying from '../assets/HomeBuying.jpg';
+import WhatsappIcon from '../components/WhatsappIcon';
 
 const Services = () => {
   return (
     <div>
       <Navbar />
+      <WhatsappIcon/>
       <h6 className='text-4xl text-center my-8'>Services Offered</h6>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-4'>
         {servicesData.map((service, index) => (

@@ -27,7 +27,7 @@ const Update = () => {
 }
 fetchProperty()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-},[done])// 'id' is intentionally excluded from the dependency array
+},[done])
 
 
 
@@ -42,23 +42,26 @@ fetchProperty()
     // handlesubmit
 
     let handlesubmit = async (event) => {
-        event.preventDefault();
-        let newdata = {
-            ...data,
-            file: image
-        };
-        console.log(newdata);
-      /*   let response = await axios.post(`http://localhost:5000/admin/property/edit/${id}`, newdata); */
-      let response = await axios.put(`http://localhost:5000/admin/edit/${id}`, newdata);
-        console.log(response.data.status);
-        setdone(!done);
-        if (response.data.status) {
-            toast.success('update successfully')
-        } else {
-             toast.error('oops! failed to update')
-             setsuccess(false);
-        }
-    };
+  event.preventDefault();
+  let newdata = {
+    ...data,
+    file: image
+  };
+  console.log(newdata);
+
+  try {
+    let response = await axios.put(`http://localhost:5000/admin/edit/${id}`, newdata);
+    
+    console.log(response.data);
+    setdone(!done);
+    toast.success('Update successful');
+
+  } catch (error) {
+    console.error('Error updating property:', error);
+    toast.error('Oops! Something went wrong during the update');
+    setsuccess(false);
+  }
+};
 
     
     return (

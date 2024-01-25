@@ -1,11 +1,13 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import WhatsappIcon from '../components/WhatsappIcon';
 
 const About = () => {
   return (
     <div>
         <Navbar />
+        <WhatsappIcon/>
     <div className="container mx-auto py-8">
       <div className="max-w-2xl mx-auto text-center">
        <i> <h6 className="text-sm text-gray-600">About Magic Land</h6></i>

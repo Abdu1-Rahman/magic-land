@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import MagicLand from '../assets/MagicLand.png';
 import '../components/Navbar.css'
 
+
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(true);
 
@@ -26,10 +27,13 @@ const Navbar = () => {
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
             </svg>
           </button>
-          <div className={`toggle items-center md:gap-3 md:flex md:flex-row flex-col flex ${showDropdown && 'hidden'}`}>
-      <ul className="text-lg font-bold flex flex-col p-4 md:p-0 md:mr-80 mt-4 border w-44 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
+          <div className={`toggle items-center md:gap-10 md:flex md:flex-row flex-col flex ${showDropdown && 'hidden'}`}>
+      <ul className="text-md font-bold flex flex-col p-4 md:p-0 md:mr-80 mt-4 border w-44 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
         <li>
           <Link to={'/'} className="nav-link" aria-current="page">HOME</Link>
+        </li>
+        <li>
+          <Link to="#" className="nav-link">BUYERS</Link>
         </li>
         <li>
           <Link to={'/about'} className="nav-link">ABOUT</Link>
@@ -38,14 +42,11 @@ const Navbar = () => {
           <Link to="/services" className="nav-link">SERVICES</Link>
         </li>
         <li>
-          <Link to="#" className="nav-link">PRICING</Link>
-        </li>
-        <li>
           <Link to={'/contact'} className="nav-link">CONTACT</Link>
         </li>
       </ul>
       <Link to={'/signup'}>
-        <button className="flex items-center justify-center md:gap-10 md:mt-0 mr-3 px-3 md:px-4 md:py-2 h-9 text-xl w-auto text-blue-700 hover:text-white transition duration-200 ease-out border-2 border-blue-700 rounded-md hover:bg-blue-700 hover:ease-in ">
+        <button className="flex items-center justify-center md:gap-10 md:mt-0 mr-3 px-3 md:px-4 md:py-2 h-9 text-lg w-auto text-blue-700 hover:text-white transition duration-200 ease-out border-2 border-blue-700 rounded-md hover:bg-blue-700 hover:ease-in ">
           SIGN IN
         </button>
       </Link>

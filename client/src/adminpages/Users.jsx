@@ -5,11 +5,16 @@ import axios from 'axios';
 const Users = () => {
 
   const[users,setUsers] = useState([])
+
+  let token=localStorage.getItem('token')
+
+  console.log(token,'dsd');
    
   useEffect(() => {
     let fetchUser = async () => {
       try {
-        let user = await axios.get('http://localhost:5000/admin/Getusers');
+         
+        let user = await axios.get('http://localhost:5000/admin/Getusers', { headers: { Authorization: `Bearer ${token}` } });
         console.log(user);
         setUsers(user.data);
       } catch (error) {
@@ -32,8 +37,6 @@ const Users = () => {
               <tr className="border-b">
                 <th className="text-left p-3 px-5">Name</th>
                 <th className="text-left p-3 px-5">Email</th>
-                <th className="text-left p-3 px-5">Role</th>
-                <th></th>
               </tr>
               {
                 users.map(user => {
@@ -41,25 +44,6 @@ const Users = () => {
                    <tr className='border-b hover:bg-orange-100 bg-gray-100'>
                     <td className='p-3 px-5'>{user.username}</td>
                     <td className='p-3 px-5'>{user.email}</td>
-                    <td className='p-3 px-5'><select  className="bg-transparent">
-                    <option value="user">user</option>
-                    <option value="admin">admin</option>
-                  </select>
-                  </td>
-                  <td className="p-3 px-5 flex justify-end">
-                  <button
-                    type="button"
-                    className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Save
-                  </button>
-                  <button
-                    type="button"
-                    className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Delete
-                  </button>
-                </td>
                   </tr>
                 )})
 

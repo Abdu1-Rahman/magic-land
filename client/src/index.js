@@ -14,6 +14,7 @@ import Contact from './pages/Contact';
 import Update from './adminpages/Update';
 import About from './pages/About';
 import Services from './pages/Services';
+import AllProperties from './pages/AllProperties';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,6 +27,7 @@ root.render(
           <Route path='/about' element={<About />} />
           <Route path='/services' element={<Services/>}/>
           <Route path='/contact' element= { <Contact/> }/>
+          <Route path='/allproperties' element={<AllProperties/>}/>
           <Route path='/dashboard' element={<MainDashboard/>}/>
           <Route path='/manageproperty' element={<ManageProperty/>}/>
           <Route path="/update/:id" element={<Update/>}/>

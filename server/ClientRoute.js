@@ -41,4 +41,5 @@ router.get('/Getproperty',async (req,res) => {
 
 
 
+
 module.exports = router;

@@ -1,14 +1,21 @@
 import React from 'react';
 import MagicLand from '../assets/MagicLand.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SlCalender } from 'react-icons/sl';
 import { IoPeopleOutline,IoSettingsOutline } from "react-icons/io5";
 import { LuMail } from "react-icons/lu";
 import { AiOutlineTransaction } from "react-icons/ai";
 import { MdHome,MdOutlineRealEstateAgent  } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
+import { IoLogOutOutline } from "react-icons/io5";
 
 const AdminNavbar = () => {
+const navigate=useNavigate()
+  let token=localStorage.getItem('token')
+  if(!token){
+    navigate('/login')
+
+  }
   return (
       <div className='fixed navbar shadow-2xl'>
         <nav>
@@ -26,6 +33,7 @@ const AdminNavbar = () => {
               <li><Link to={''} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700'><AiOutlineTransaction />Transactions</Link></li>
               <li><Link to={'/settings'} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700'><IoSettingsOutline />Settings</Link></li>
               <li><Link to={'/profile'} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700'><CgProfile />Profile</Link></li>
+              <li><Link to={'/'} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700'><IoLogOutOutline />Sign Out</Link></li>
             </ul>
             </div>
           </div>

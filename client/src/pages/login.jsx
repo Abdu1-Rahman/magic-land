@@ -20,12 +20,15 @@ const Login = () => {
     event.preventDefault()
 
     let response=await axios.post('http://localhost:5000/admin/login',data)
-    console.log(response);
-    if(response.data.type==='user'){
+    console.log(response.data.token);
+    if(response.data.token){
+      localStorage.setItem('token',response.data.token)
+    }
+    if(response.data.response.type==='user'){
       navigate('/')
       
     }
-    else if(response.data.type==='admin'){
+    else if(response.data.response.type==='admin'){
       
       navigate('/dashboard')
    }
