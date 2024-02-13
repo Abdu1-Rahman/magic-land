@@ -11,6 +11,13 @@ const Navbar = () => {
     setShowDropdown(!showDropdown);
   };
 
+
+  const [buyerHover, setBuyerHover] = useState(false);
+
+  const toggleHover = () => {
+    setBuyerHover(!buyerHover);
+  };
+
   return (
     <div className='shadow-md'>
       <nav className="bg-white border-gray-200">
@@ -33,7 +40,20 @@ const Navbar = () => {
           <Link to={'/'} className="nav-link" aria-current="page">HOME</Link>
         </li>
         <li>
-          <Link to="#" className="nav-link">BUYERS</Link>
+          <Link to="#" className="nav-link"><div class="dropdown">
+  <button class="dropbtn" onMouseOver={
+  toggleHover}>BUYERS</button>
+  {buyerHover &&
+<div class="dropdown-content " onMouseOut={
+  toggleHover
+}>
+<a href="#">Link 1</a>
+<a href="#">Link 2</a>
+<a href="#">Link 3</a>
+</div>
+}
+  
+</div></Link>
         </li>
         <li>
           <Link to={'/about'} className="nav-link">ABOUT</Link>
@@ -45,9 +65,9 @@ const Navbar = () => {
           <Link to={'/contact'} className="nav-link">CONTACT</Link>
         </li>
       </ul>
-      <Link to={'/signup'}>
+      <Link to={'/login'}>
         <button className="flex items-center justify-center md:gap-10 md:mt-0 mr-3 px-3 md:px-4 md:py-2 h-9 text-lg w-auto text-blue-700 hover:text-white transition duration-200 ease-out border-2 border-blue-700 rounded-md hover:bg-blue-700 hover:ease-in ">
-          SIGN IN
+          LOGIN
         </button>
       </Link>
     </div>

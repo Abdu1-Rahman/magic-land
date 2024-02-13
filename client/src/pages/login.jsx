@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { /* Link */ useNavigate } from 'react-router-dom'
+import { /* Link */ Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
  
@@ -20,9 +20,10 @@ const Login = () => {
     event.preventDefault()
 
     let response=await axios.post('http://localhost:5000/admin/login',data)
-    console.log(response.data.token);
     if(response.data.token){
       localStorage.setItem('token',response.data.token)
+      localStorage.setItem('id',response.data.userid)
+      
     }
     if(response.data.response.type==='user'){
       navigate('/')
@@ -82,6 +83,7 @@ const Login = () => {
      <h2 className='text-red-500'>invalid username or password!</h2>
      }
       <button type='submit' className='rounded p-1 bg-indigo-700 text-white w-56'>Login</button>
+      <h5>Don't have an accout?<Link to={'/signup'} className='text-indigo-700'>Sign up</Link></h5>
   </form>
   </div>
 </div>

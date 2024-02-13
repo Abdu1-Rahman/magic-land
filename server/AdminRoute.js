@@ -33,9 +33,6 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-
-
-
 router.post('/login',async (req,res)=>{
     console.log(req.body)
    let response= await db.collection('user').findOne(req.body)
@@ -43,7 +40,9 @@ router.post('/login',async (req,res)=>{
    if(response){
     let token=jwt.sign({id:response._id,username:response.username},'abc')
     console.log(token);
-    res.json({response,token})
+    let userid=response._id
+    console.log(userid);
+    res.json({response,token,userid})
    }
    else{
     res.json({status:false})
@@ -57,6 +56,20 @@ router.post('/property',async (req,res)=>{
  res.json({status:true})
 }
 )
+
+
+router.get('/property',async (req,res)=>{
+  let properties =await db.collection("property").find().toArray();
+  res.json(properties)
+  console.log(properties);
+})
+
+router.get('/usercount',async (req,res)=>{
+  let count =await db.collection("user").countDocuments();
+  res.json(count)
+  console.log(count);
+})
+
 
 router.get('/property',async (req,res)=>{
     let properties =await db.collection("property").find().toArray();
@@ -96,4 +109,17 @@ router.put('/edit/:id', async (req,res) => {
   res.json(response)
 })
 
+router.post('/message',async (req,res)=>{
+   
+    const data =JSON.parse(req.body.data)
+    let message=await db.collection("message").insertOne(data)
+    // console.log(message);
+    res.json({message:"Message sent"})
+  })
+
+router.get('/GetMessage',async (req,res)=>{
+  let response=await db.collection("message").find().toArray()
+  res.json(response)
+})
+  
 module.exports = router

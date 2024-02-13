@@ -1,14 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import axios from 'axios';
 
 const AllProperties = () => {
   const [propertys, setPropertys] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   
+
+  useEffect(() => {
+    let fetchProperty = async () => {
+      try {
+        let property = await axios.get(`http://localhost:5000/Getproperty`);
+        setPropertys(property.data.propertys);
+        setIsLoaded(true);
+      } catch (error) {
+        console.error('Error fetching property:', error);
+      }
+    };
+    fetchProperty();
+  });
 
   return (
     <div className='bg-gray-100'>
       <Navbar />
+      <div className='flex'>
       <div className='rounded w-80 ml-12 mt-4 bg-white p-8'>
         <h1 className='text-lg'>Find Your Property</h1>
         <form>
@@ -45,18 +61,15 @@ const AllProperties = () => {
          <h1 className='text-md'>Search by property ID or title</h1>
          <input type='search' placeholder='Search' className='p-2 outline-none bg-gray-100'/>
       </div>
-      <div>
+      <div className='w-full'>
       {propertys.map((property, index) => (
-          <div
-            key={index}
-            className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mt-5 px-2'
-          >
-            <div className='bg-white border border-gray-200 rounded-lg shadow'>
+          <div key={index} className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-full mt-5 px-2'>
+            <div className='bg-white flex border border-gray-200 rounded-lg shadow'>
               <a href='#'>
                 <img
-                  className='rounded-t-lg w-full'
+                  className='rounded-t-lg w-52 l-98'
                   src={property.file}
-                  alt=''
+                  alt='propertyImage'
                 />
               </a>
               <div className='p-4'>
@@ -99,6 +112,7 @@ const AllProperties = () => {
             </div>
           </div>
         ))}
+      </div>
       </div>
       <Footer />
     </div>

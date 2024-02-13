@@ -15,7 +15,6 @@ const Signup = () => {
     let fetchdata = async () => {
       try {
         let response = await axios.get('http://localhost:5000/fetch');
-        console.log(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -29,7 +28,6 @@ const Signup = () => {
 
   let handlechange=(event)=>{
     setdata({...data,[event.target.name]:event.target.value})
-    console.log(data);
   }
     
   //handlesubmit
@@ -39,11 +37,8 @@ const Signup = () => {
   
     try {
       let newdata = { ...data,['type']:'user' };
-      console.log(newdata);
       
       let response = await axios.post('http://localhost:5000/add', newdata);
-  
-      console.log(response.data.status);
       setdone(!done);
   
       if (response.data.status) {

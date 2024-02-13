@@ -20,7 +20,6 @@ const ManageProperty = () => {
     useEffect(()=>{
         let fetchProperty =async() =>{
               let property =await axios.get('http://localhost:5000/admin/property')
-        console.log(property);
         setproperties(property.data)
 }
 fetchProperty()
@@ -31,7 +30,6 @@ fetchProperty()
 
     let handlechange=(event)=>{
         setdata({...data,[event.target.name]:event.target.value})
-        console.log(data)
     }
 
 
@@ -43,9 +41,7 @@ fetchProperty()
             ...data,
             file: image
         };
-        console.log(newdata);
         let response = await axios.post('http://localhost:5000/admin/property', newdata);
-        console.log(response.data.status);
         setdone(!done);
         if (response.data.status) {
             toast.success('added successfully')
@@ -58,7 +54,6 @@ fetchProperty()
     // handledelete
 
     let handledelete=async (id)=>{
-        console.log(id);
         try{
     
             await axios.delete(`http://localhost:5000/admin/property/${id}`)

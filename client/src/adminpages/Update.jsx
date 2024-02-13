@@ -22,7 +22,6 @@ const Update = () => {
     useEffect(()=>{
         let fetchProperty =async() =>{
               let property =await axios.get(`http://localhost:5000/admin/edit/${id}`)
-        console.log(property);
         setproperties(property.data)
 }
 fetchProperty()
@@ -35,7 +34,6 @@ fetchProperty()
 
     let handlechange=(event)=>{
         setdata({...data,[event.target.name]:event.target.value})
-        console.log(data)
     }
 
 
@@ -47,12 +45,9 @@ fetchProperty()
     ...data,
     file: image
   };
-  console.log(newdata);
 
   try {
     let response = await axios.put(`http://localhost:5000/admin/edit/${id}`, newdata);
-    
-    console.log(response.data);
     setdone(!done);
     toast.success('Update successful');
 

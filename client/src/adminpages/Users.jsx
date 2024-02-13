@@ -7,15 +7,12 @@ const Users = () => {
   const[users,setUsers] = useState([])
 
   let token=localStorage.getItem('token')
-
-  console.log(token,'dsd');
    
   useEffect(() => {
     let fetchUser = async () => {
       try {
          
         let user = await axios.get('http://localhost:5000/admin/Getusers', { headers: { Authorization: `Bearer ${token}` } });
-        console.log(user);
         setUsers(user.data);
       } catch (error) {
         console.error("Error fetching users:", error);
