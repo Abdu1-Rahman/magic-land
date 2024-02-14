@@ -6,26 +6,23 @@ import AdminNavbar from '../admincomponents/AdminNavbar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SearchBox from '../admincomponents/SearchBox';
-import './prop.css'
 
 const Update = () => {
 
-
+  let token=localStorage.getItem('token')
   const {id}= useParams()
     const [image, setimage] = useState();
     const [data, setdata] = useState();
     const [success, setsuccess] = useState();
     const [done, setdone] = useState(true);
-   /*  const [Rdata,setRdata]=useState(['']) */
     const [properties, setproperties] = useState('')
 
     useEffect(()=>{
         let fetchProperty =async() =>{
-              let property =await axios.get(`http://localhost:5000/admin/edit/${id}`)
+              let property =await axios.get(`http://localhost:5000/admin/edit/${id}`, { headers: { Authorization: `Bearer ${token}` } })
         setproperties(property.data)
 }
 fetchProperty()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
 },[done])
 
 

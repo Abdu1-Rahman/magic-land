@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { /* Link */ Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
  
@@ -26,12 +26,13 @@ const Login = () => {
       
     }
     if(response.data.response.type==='user'){
+
       navigate('/')
       
     }
     else if(response.data.response.type==='admin'){
-      
-      navigate('/dashboard')
+      navigate('/admin/dashboard')
+      window.location.reload()
    }
     else{
 

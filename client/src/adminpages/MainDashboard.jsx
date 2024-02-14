@@ -13,13 +13,20 @@ import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 
 const MainDashboard = () => {
-
+  let token=localStorage.getItem('token')
   const [count,setcount]=useState()
 
   useEffect(()=>{
     let fetchCount=async ()=>{
-      let userCount=await axios.get('http://localhost:5000/admin/usercount')
-      setcount(userCount.data)
+      try{
+
+        let userCount=await axios.get('http://localhost:5000/admin/usercount',{ headers: { Authorization: `Bearer ${token}` } })
+        setcount(userCount.data)
+      }
+      catch(e){
+        console.log(e);
+
+      }
     }
     fetchCount()
   },[])
@@ -65,7 +72,6 @@ const MainDashboard = () => {
   };
   return (
     <>
-      <AdminNavbar/>
     <div className='flex justify-between '>
       <div className='w-[50%] m-auto'>
 <div>

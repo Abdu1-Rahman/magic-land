@@ -17,20 +17,22 @@ const verifyToken = (req, res, next) => {
   if (!authHeader) {
     return res.status(403).json({ message: 'Token is not provided' });
   }
-
-  // Extract the actual token without the "Bearer " prefix
   const token = authHeader.split(' ')[1];
 
   jwt.verify(token, 'abc', (err, decoded) => {
     if (err) {
       console.log(err);
-      return res.status(401).json({ message: 'Unauthorized: Invalid token' });
+      return res.status(401).json({ message: '  : Invalid token' });
     }
     
     req.decoded = decoded;
+    if(req.decoded.username!='admin'){
+      console.log('df');
+      return res.status(500).json({ message: 'Invalid token' });
+    }
     console.log(req.decoded, 'asd');
-    next();
-  });
+    next()
+   });
 };
 
 router.post('/login',async (req,res)=>{
@@ -64,7 +66,7 @@ router.get('/property',async (req,res)=>{
   console.log(properties);
 })
 
-router.get('/usercount',async (req,res)=>{
+router.get('/usercount',verifyToken,async (req,res)=>{
   let count =await db.collection("user").countDocuments();
   res.json(count)
   console.log(count);
@@ -92,7 +94,7 @@ router.get('/edit/:id',async (req,res)=>{
 })
 
   router.get('/Getusers',verifyToken, async (req, res) => {
-    try {
+    try {   
       const users = await db.collection('user').find().toArray();
       res.json(users);
     } catch (error) {
@@ -103,8 +105,6 @@ router.get('/edit/:id',async (req,res)=>{
 
 router.put('/edit/:id', async (req,res) => {
   let id = new mongoose.Types.ObjectId(req.params.id)
-  console.log(req.body);
-  console.log(id);
   let response = await db.collection('property').updateOne({_id:id},{$set:req.body})
   res.json(response)
 })
@@ -113,13 +113,19 @@ router.post('/message',async (req,res)=>{
    
     const data =JSON.parse(req.body.data)
     let message=await db.collection("message").insertOne(data)
-    // console.log(message);
     res.json({message:"Message sent"})
   })
 
 router.get('/GetMessage',async (req,res)=>{
   let response=await db.collection("message").find().toArray()
   res.json(response)
+})
+
+router.delete('/message/:id',async (req,res)=> {
+  let id = new mongoose.Types.ObjectId(req.params.id)
+  let response = await db.collection('message').deleteOne({_id:id})
+  res.json(response)
+
 })
   
 module.exports = router

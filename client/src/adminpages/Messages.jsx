@@ -10,47 +10,59 @@ import AdminNavbar from '../admincomponents/AdminNavbar';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
-function createData(firstName, lastName, Phone, Email, Howdidyouhere, Message) {
-  return { firstName, lastName, Phone, Email, Howdidyouhere, Message };
+function createData(firstName, lastName, phone, email, referral, message) {
+  return { firstName, lastName, phone, email, referral, message };
 }
 
 
 export default function BasicTable() {
+  let token=localStorage.getItem('token')
 
   const[messages,setMessages] = useState([])
+  const[done,setDone] = useState([])
 
 useEffect( () => {
   let fetchMessage=async ()=>{
-    let message=await axios.get('http://localhost:5000/admin/GetMessage')
+    let message=await axios.get('http://localhost:5000/admin/GetMessage', { headers: { Authorization: `Bearer ${token}` } })
    await setMessages(message.data)
     }
 fetchMessage();
 },[])
 
-
+// Handle delete
+const handleDelete = async (id) => {
+  try {
+    await axios.delete(`http://localhost:5000/admin/message/${id}`);
+    toast.success('Message deleted successfully');
+    setDone(!done);
+  } catch (error) {
+    console.error('Error deleting message:', error);
+  }
+};
 
 
   return (
     <div className='flex'>
-      <AdminNavbar/>
+      <ToastContainer />
       <div  className="w-full ml-64">
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell width={100}>FirstName</TableCell>
-            <TableCell align="center" width={100} >LastName</TableCell>
-            <TableCell align="center" width={100}>Phone</TableCell>
-            <TableCell align="center" width={100}>Email</TableCell>
-            <TableCell align="center" width={100}>Referral</TableCell>
-            <TableCell align="center">Message</TableCell>
+            <TableCell width={100}><div className='font-semibold'>FirstName</div></TableCell>
+            <TableCell align="center" width={100} ><div className='font-semibold'>LastName</div></TableCell>
+            <TableCell align="center" width={100}><div className='font-semibold'>Phone</div></TableCell>
+            <TableCell align="center" width={100}><div className='font-semibold'>Email</div></TableCell>
+            <TableCell align="center" width={100}><div className='font-semibold'>Referral</div></TableCell>
+            <TableCell align="center"><div className='font-semibold'>Message</div></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {messages.map((row) => (
             <TableRow
-              key={row.email}
+              key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
@@ -59,8 +71,11 @@ fetchMessage();
               <TableCell align="right">{row.lastName}</TableCell>
               <TableCell align="right">{row.phone}</TableCell>
               <TableCell align="right">{row.email}</TableCell>
-              <TableCell align="right">{row.howdidyouhere}</TableCell>
+              <TableCell align="right">{row.referral}</TableCell>
               <TableCell align="center">{row.message}</TableCell>
+              <TableCell align="center">
+              <button className='bg-red-500 text-white p-1 rounded-md' onClick={() => { handleDelete(row._id) }}>Delete</button>
+                </TableCell>
             </TableRow>
           ))}
         </TableBody>

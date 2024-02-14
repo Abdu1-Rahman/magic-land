@@ -23,8 +23,7 @@ const Users = () => {
 
   return (
     <div className='flex'>
-      <AdminNavbar/>
-      <div className="text-gray-900 bg-gray-200 w-full ml-64">
+      <div className="text-gray-900 bg-gray-200 w-full ml-56">
         <div className="p-4 flex">
           <h1 className="text-3xl">Users</h1>
         </div>

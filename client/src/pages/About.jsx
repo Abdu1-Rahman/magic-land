@@ -8,7 +8,7 @@ const About = () => {
     <div>
         <Navbar />
         <WhatsappIcon/>
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto pb-8 pt-28">
       <div className="max-w-2xl mx-auto text-center">
        <i> <h6 className="text-sm text-gray-600">About Magic Land</h6></i>
         <h4 className="text-3xl text-indigo-700 font-bold mb-4">Welcome to Magic Land - Where Dreams Find a Home!</h4>

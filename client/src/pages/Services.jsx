@@ -12,9 +12,9 @@ import WhatsappIcon from '../components/WhatsappIcon';
 const Services = () => {
   return (
     <div>
-      <Navbar />
+          <Navbar />
       <WhatsappIcon/>
-      <h6 className='text-4xl text-center my-8'>Services Offered</h6>
+      <h6 className='text-4xl text-center my-8 pt-28'>Services Offered</h6>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-4'>
         {servicesData.map((service, index) => (
           <div key={index} className='w-full md:w-80 mx-auto mb-8'>

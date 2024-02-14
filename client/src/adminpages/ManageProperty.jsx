@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import FileBase64 from 'react-file-base64';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Assuming you are using react-router-dom
+import { Link } from 'react-router-dom'; 
 import AdminNavbar from '../admincomponents/AdminNavbar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SearchBox from '../admincomponents/SearchBox';
-import './prop.css'
 
 const ManageProperty = () => {
+    let token=localStorage.getItem('token')
 
     const [image, setimage] = useState();
     const [data, setdata] = useState();
@@ -19,7 +19,7 @@ const ManageProperty = () => {
 
     useEffect(()=>{
         let fetchProperty =async() =>{
-              let property =await axios.get('http://localhost:5000/admin/property')
+              let property =await axios.get('http://localhost:5000/admin/property', { headers: { Authorization: `Bearer ${token}` } })
         setproperties(property.data)
 }
 fetchProperty()
@@ -56,7 +56,7 @@ fetchProperty()
     let handledelete=async (id)=>{
         try{
     
-            await axios.delete(`http://localhost:5000/admin/property/${id}`)
+            await axios.delete(`http://localhost:5000/admin/property/${id}`, { headers: { Authorization: `Bearer ${token}` } })
             toast('successful')
             setdone(!done)
     
@@ -69,7 +69,6 @@ fetchProperty()
     return (
         <div className='flex flex-col sm:flex-row'>
         <ToastContainer />
-        <AdminNavbar />
         <SearchBox />
         <div className='flex flex-col sm:mt-8 sm:ml-96'>
             <form className='flex flex-col gap-2 items-center justify-center m-10 shadow-xl' onSubmit={handlesubmit}>

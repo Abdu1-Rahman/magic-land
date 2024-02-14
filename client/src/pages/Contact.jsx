@@ -39,7 +39,7 @@ const Contact = () => {
     <div>
       <Navbar />
       <div className='flex flex-col md:flex-row justify-center items-center mb-5 md:ml-5'>
-        <div className='md:w-1/2'>
+        <div className='md:w-1/2 mt-24'>
           <div className='text1 flex flex-col md:flex-row justify-center items-center md:justify-start'>
             <h1 className='text-6xl mb-4 md:mb-0'>CONTACT</h1>
             <h1 className='md:text-right text-4xl md:text-7xl font-extrabold text-indigo-700'>Magic <br />Land</h1>

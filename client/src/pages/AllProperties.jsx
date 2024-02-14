@@ -25,43 +25,7 @@ const AllProperties = () => {
     <div className='bg-gray-100'>
       <Navbar />
       <div className='flex'>
-      <div className='rounded w-80 ml-12 mt-4 bg-white p-8'>
-        <h1 className='text-lg'>Find Your Property</h1>
-        <form>
-          <div className='text-gray-600' >
-          <label>
-            <input type="radio" name="propertyType" value="Buy"/> Buy
-          
-            <input type="radio" name="propertyType" value="Rent" className='ml-4' /> Rent
-          </label>
-          </div>
-        </form>
-        <h1 className='text-md'>What kind of property you want?</h1>
-        <select className='w-52 outline-none bg-slate-100 p-2'>
-          <option value="">Select</option>
-          <option value="">Residential</option>
-          <option value="">commercial</option>
-          <option value="">Agricultures</option>
-        </select>
-        <h1 className='text-md'>Select property type</h1>
-        <div className='text-gray-600'>
-        <input type="checkbox"/>
-         <label className='pb-2' >Flat/Apartment</label><br/>
-         <input type="checkbox"/>
-         <label >Independent House/Villa</label><br/>
-         <input type="checkbox"/>
-         <label >Residential Land</label><br/>
-         <input type="checkbox"/>
-         <label >Studio Apartment</label><br/>
-         <input type="checkbox"/>
-         <label >Service Apartment</label><br/>
-         <input type="checkbox"/>
-         <label >Residential Others</label><br/>
-         </div>
-         <h1 className='text-md'>Search by property ID or title</h1>
-         <input type='search' placeholder='Search' className='p-2 outline-none bg-gray-100'/>
-      </div>
-      <div className='w-full'>
+      <div className='w-1/2'>
       {propertys.map((property, index) => (
           <div key={index} className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-full mt-5 px-2'>
             <div className='bg-white flex border border-gray-200 rounded-lg shadow'>
@@ -87,7 +51,7 @@ const AllProperties = () => {
                 ₹{property.Price}
                 </p>
                 <a
-                  href='#'
+                  href={`/Details/${property._id}`}
                   className='inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
                 >
                   View Details

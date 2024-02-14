@@ -16,6 +16,7 @@ import Services from './pages/Services';
 import AllProperties from './pages/AllProperties';
 import Messages from './adminpages/Messages';
 import ViewDetails from './pages/ViewDetails';
+import AdminNavbar from './admincomponents/AdminNavbar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -31,13 +32,20 @@ root.render(
           <Route path='/allproperties' element={<AllProperties/>}/>
           <Route path='/Details/:id' element={<ViewDetails/>}/>
 
-          
-          <Route path='/dashboard' element={<MainDashboard/>}/>
-          <Route path='/message' element={<Messages/>}/>
-          <Route path='/manageproperty' element={<ManageProperty/>}/>
-          <Route path="/update/:id" element={<Update/>}/>
-          <Route path='/users' element={<Users/>}/>
-          <Route path='/profile' element={<Profile/>}/>
+
+         
+        </Routes>
+      </Router>
+      <Router>
+        <Routes>
+        <Route path='/admin' element={<AdminNavbar/>}>
+        <Route path='dashboard' element={<MainDashboard/>}/>
+          <Route path='message' element={<Messages/>}/>
+          <Route path='manageproperty' element={<ManageProperty/>}/>
+          <Route path="update/:id" element={<Update/>}/>
+          <Route path='users' element={<Users/>}/>
+          <Route path='profile' element={<Profile/>}/>
+          </Route>
         </Routes>
       </Router>
   </React.StrictMode>
