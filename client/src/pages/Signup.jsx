@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 
@@ -10,6 +10,8 @@ const Signup = () => {
   const [data,setdata]=useState('')
   const[done,setdone]=useState(true)
   const[success,setsuccess]=useState()
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     let fetchdata = async () => {
@@ -96,7 +98,7 @@ const Signup = () => {
         </form>
         
         {success ?
-          <h2>Inserted successfully</h2>
+          navigate('/loginPage')
           : success === false &&
           <h2>Not successful</h2>
         }

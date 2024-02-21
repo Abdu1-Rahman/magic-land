@@ -59,7 +59,6 @@ fetchProperty()
     return (
         <div className='flex'>
             <ToastContainer/>
-            <AdminNavbar />
             <SearchBox/>
             <div className='flex flex-col mt-20 ml-96'>
             <form className='flex flex-col gap-2 items-center justify-center m-10 shadow-xl' onSubmit={handlesubmit}>

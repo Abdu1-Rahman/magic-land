@@ -26,7 +26,7 @@ export default function BasicTable() {
 useEffect( () => {
   let fetchMessage=async ()=>{
     let message=await axios.get('http://localhost:5000/admin/GetMessage', { headers: { Authorization: `Bearer ${token}` } })
-   await setMessages(message.data)
+     setMessages(message.data)
     }
 fetchMessage();
 },[])
@@ -46,7 +46,7 @@ const handleDelete = async (id) => {
   return (
     <div className='flex'>
       <ToastContainer />
-      <div  className="w-full ml-64">
+      <div  className="w-full ml-56 mt-5">
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>

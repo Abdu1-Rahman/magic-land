@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
@@ -27,7 +27,7 @@ const Login = () => {
     }
     if(response.data.response.type==='user'){
 
-      navigate('/')
+      navigate('/loginpage')
       
     }
     else if(response.data.response.type==='admin'){
@@ -83,7 +83,7 @@ const Login = () => {
      
      <h2 className='text-red-500'>invalid username or password!</h2>
      }
-      <button type='submit' className='rounded p-1 bg-indigo-700 text-white w-56'>Login</button>
+      <button onClick={handlesubmit} className='rounded p-1 bg-indigo-700 text-white w-56'>Login</button>
       <h5>Don't have an accout?<Link to={'/signup'} className='text-indigo-700'>Sign up</Link></h5>
   </form>
   </div>

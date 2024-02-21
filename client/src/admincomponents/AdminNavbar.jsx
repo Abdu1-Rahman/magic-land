@@ -49,7 +49,8 @@ const navigate=useNavigate()
               <hr className='w-52 bg-indigo-100 h-0.5' />
               <li><Link to={'/admin/message'} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700'><LuMail />Messages</Link></li>
               <li><Link to={'/admin/profile'} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700'><CgProfile />Profile</Link></li>
-              <li><Link to={'/login'} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700'><IoLogOutOutline />Sign Out</Link></li>
+              <li><Link to={'/'} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700'><IoLogOutOutline />Sign Out</Link></li>
+              
             </ul>
             </div>
           </div>

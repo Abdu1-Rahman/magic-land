@@ -33,8 +33,14 @@ router.post('/add',(req, res) => {
 
 router.get('/Getproperty',async (req,res) => {
     try{
-    let propertys =await db.collection('property').find().toArray()
-    
+        const query = req.query
+        // if(req.query){
+        //     let propertys =await db.collection('property').find({Location :req.query.Location}).toArray()
+        //     console.log(propertys)
+        //  return   res.json({success: true, propertys})
+        // }
+    let propertys =await db.collection('property').find(query).toArray()
+    console.log(req.query)
     res.json({success: true, propertys})
 }catch (error) {
     console.log("Error in displaying properties",error);

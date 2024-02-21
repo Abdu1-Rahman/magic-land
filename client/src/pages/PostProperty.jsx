@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
-            import FileBase64 from 'react-file-base64';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; 
-import AdminNavbar from '../admincomponents/AdminNavbar';
+import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import SearchBox from '../admincomponents/SearchBox';
+import { Link } from 'react-router-dom';
+import FileBase64 from 'react-file-base64';
+import LoginNav from '../components/LoginNav'
 
-const ManageProperty = () => {
+const PostProperty = () => {
     let token=localStorage.getItem('token')
 
     const [image, setimage] = useState();
@@ -68,8 +66,8 @@ fetchProperty()
 
     return (
         <div className='flex flex-col sm:flex-row'>
+            <LoginNav/>
         <ToastContainer />
-        <SearchBox />
         <div className='flex flex-col sm:mt-16 sm:ml-96'>
     <form className='flex flex-col gap-4 items-center justify-center m-10 shadow-xl p-8 rounded-lg bg-white' onSubmit={handlesubmit}>
         <img src={image} alt='real estate' className='w-28 h-28 rounded-full' />
@@ -81,6 +79,7 @@ fetchProperty()
         </label>
         <button className='text-white bg-indigo-500 hover:bg-indigo-600 rounded-lg py-2 px-8 focus:outline-none focus:ring-2 focus:ring-indigo-500' type="submit">Submit</button>
     </form>
+
             {success ? (
                 <h2>Inserted successfully</h2>
             ) : success === false && (
@@ -112,4 +111,4 @@ fetchProperty()
     );
 };
 
-export default ManageProperty;
+export default PostProperty

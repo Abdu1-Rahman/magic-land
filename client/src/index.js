@@ -17,6 +17,8 @@ import AllProperties from './pages/AllProperties';
 import Messages from './adminpages/Messages';
 import ViewDetails from './pages/ViewDetails';
 import AdminNavbar from './admincomponents/AdminNavbar';
+import LoginPage from '../src/pages/LoginPage'
+import PostProperty from './pages/PostProperty';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -31,6 +33,8 @@ root.render(
           <Route path='/contact' element= { <Contact/> }/>
           <Route path='/allproperties' element={<AllProperties/>}/>
           <Route path='/Details/:id' element={<ViewDetails/>}/>
+          <Route path='/loginpage' element={<LoginPage/>}/>
+          <Route path='/postproperty' element={<PostProperty/>}/>
 
 
          

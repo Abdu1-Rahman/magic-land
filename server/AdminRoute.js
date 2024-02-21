@@ -11,6 +11,8 @@ const Property = mongoose.model('Property', new mongoose.Schema({
   file: String 
 }));
 
+
+
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   
