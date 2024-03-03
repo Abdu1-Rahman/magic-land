@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 import Signup from './pages/Signup';
-import Login from './pages/Login';
+import Login from './pages/login'
 import Home from './pages/Home'
 import MainDashboard from './adminpages/MainDashboard'
 import Users from './adminpages/Users';
