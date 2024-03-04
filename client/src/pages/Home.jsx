@@ -79,11 +79,8 @@ const Home = () => {
     fetchProperty();
   }, []);
 
- 
-
-
   return (
-    <div style={{ overflow: 'hidden', height: '100%' }}>
+    <div className="overflow-hidden min-h-screen">
       <div className="mb-24">
         <Navbar />
       </div>
@@ -92,12 +89,8 @@ const Home = () => {
         <img
           src={land2}
           alt="pics"
-          className="h-64 w-full object-cover transition-transform duration-200 ease-in-out transform hover:scale-110 overflow-hidden"
+          className="h-64 sm:h-96 w-full object-cover transition-transform duration-200 ease-in-out transform hover:scale-110 overflow-hidden"
         />
-        <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center">
-
-       
-        </div>
       </div>
       <div className="ml-3">
         <h6 className="flex gap-2 text-3xl font-medium mt-3 text-gray-800">Best Properties For Sale in <div className='text-indigo-700'>UK</div></h6>
@@ -112,7 +105,7 @@ const Home = () => {
         {loading ? (
           <LoaderComponent loading={loading} />
         ) : (
-          <div className="card-container flex gap-15 overflow-x-auto mx-1 p-6 whitespace-nowrap">
+          <div className="card-container flex gap-6 sm:gap-10 md:gap-16 lg:gap-20 xl:gap-4 overflow-x-auto mx-1 p-6 whitespace-nowrap">
             {propertys.slice(0, 5).map((property, index) => (
               <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mt-5 px-2">
                 <div className="bg-white border border-gray-200 rounded-lg shadow">
@@ -121,7 +114,7 @@ const Home = () => {
                   </a>
                   <div className="p-4">
                     <p className='flex gap-8'>
-                      <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">{property.Name}</h5>
+                      <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">{property.Name}</h5><br/>
                     <p className='flex text-gray-400 justify-end'><IoLocation className='text-blue-700 mt-1'/>{property.Location}</p>
                     </p>
                     <p className='text-gray-500'>{property.title}</p>
@@ -150,46 +143,44 @@ const Home = () => {
             ))}
           </div>
         )}
-        <div id="default-carousel" className="relative w-3/4 h-2/3 mx-52  mb-4" data-carousel="slide">
-          <div>
-            <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-                {slides.map((slide, index) => (
-                    <div key={index} className={`${index === currentSlide ? '' : 'hidden'} duration-700 ease-in-out`} data-carousel-item>
-                        <img src={slide} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-fit" alt="slide" />
-                    </div>
-                ))}
-            </div>
+        <div id="default-carousel" className="relative w-full mx-auto mb-4" data-carousel="slide">
+          <div className="relative h-56 sm:h-96 overflow-hidden rounded-lg md:h-96">
+              {slides.map((slide, index) => (
+                  <div key={index} className={`${index === currentSlide ? '' : 'hidden'} duration-700 ease-in-out`} data-carousel-item>
+                      <img src={slide} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover" alt="slide" />
+                  </div>
+              ))}
+          </div>
 
-            <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                {slides.map((_, index) => (
-                    <button key={index} type="button" className={`w-3 h-3 rounded-full ${index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'}`} aria-current={index === currentSlide ? 'true' : 'false'} aria-label={`Slide ${index + 1}`} data-carousel-slide-to={index} onClick={() => goToSlide(index)}></button>
-                ))}
-            </div>
+          <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+              {slides.map((_, index) => (
+                  <button key={index} type="button" className={`w-3 h-3 rounded-full ${index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'}`} aria-current={index === currentSlide ? 'true' : 'false'} aria-label={`Slide ${index + 1}`} data-carousel-slide-to={index} onClick={() => goToSlide(index)}></button>
+              ))}
+          </div>
 
-    <button type="button" className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 1 1 5l4 4"/>
-            </svg>
-            <span className="sr-only">Previous</span>
-        </span>
-    </button>
-    <button type="button" className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
-            </svg>
-            <span className="sr-only">Next</span>
-        </span>
-    </button>
-    </div>
-</div>
-                  <Features/>
-        <CommentSection comments={propertys} />
+          <button type="button" className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev onClick={goToPrevSlide}>
+              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                  <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 1 1 5l4 4"/>
+                  </svg>
+                  <span className="sr-only">Previous</span>
+              </span>
+          </button>
+          <button type="button" className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next onClick={goToNextSlide}>
+              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                  <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
+                  </svg>
+                  <span className="sr-only">Next</span>
+              </span>
+          </button>
       </div>
-      <Footer />
+      <Features/>
+      <CommentSection comments={propertys} />
     </div>
-  );
+    <Footer />
+  </div>
+);
 };
 
 export default Home;
