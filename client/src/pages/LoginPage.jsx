@@ -18,7 +18,7 @@ import Features from '../components/Features';
 import { IoLocation } from "react-icons/io5";
 
 
-const LoaderComponent = ({ loading }) => (
+const LoaderComponent = ({loading }) => (
   <div className="flex justify-center items-center h-screen">
     <HashLoader
       color={'#3949ab'}
@@ -30,7 +30,7 @@ const LoaderComponent = ({ loading }) => (
   </div>
 );
 
-const Home = () => {
+const Home = ({cookies}) => {
   const slides = [slide1, slide2, slide3, slide4, slide5];
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -80,9 +80,10 @@ const Home = () => {
   }, []);
 
   return (
+
     <div style={{ overflow: 'hidden', height: '100%' }}>
       <div className="mb-24">
-        <LoginNav />
+        <LoginNav cookies={cookies}/>
       </div>
       <WhatsappIcon />
       <div className="relative">

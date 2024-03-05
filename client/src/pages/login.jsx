@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({setLoggedIn}) => {
  
   const[data,setdata]=useState()
   const[success,setsuccess]=useState(false)
@@ -19,7 +19,13 @@ const Login = () => {
   let handlesubmit=async(event)=>{
     event.preventDefault()
 
-    let response=await axios.post('http://localhost:5000/admin/login',data)
+    let response=await axios.post('http://localhost:5000/admin/login',data);
+    console.log(response.data.Loggedin)
+    if(response.data.Loggedin){
+      setLoggedIn(true)
+    }
+   
+
     if(response.data.token){
       localStorage.setItem('token',response.data.token)
       localStorage.setItem('id',response.data.userid)

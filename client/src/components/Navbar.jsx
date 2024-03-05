@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import MagicLand from '../assets/MagicLand.png';
 import '../components/Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({isLoggedIn}) => {
   const [showDropdown, setShowDropdown] = useState(true);
   const [showNavbar, setShowNavbar] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
@@ -79,6 +79,14 @@ const Navbar = () => {
                 LOGIN
               </button>
             </Link>
+            {/* {isLoggedIn ?(<button className="flex items-center justify-center md:gap-10 md:mt-0 mr-3 px-3 md:px-4 md:py-2 h-9 text-lg w-auto text-blue-700 hover:text-white transition duration-200 ease-out border-2 border-blue-700 rounded-md hover:bg-blue-700 hover:ease-in ">
+                Logout
+              </button>) :(<Link to={'/login'}>
+              <button className="flex items-center justify-center md:gap-10 md:mt-0 mr-3 px-3 md:px-4 md:py-2 h-9 text-lg w-auto text-blue-700 hover:text-white transition duration-200 ease-out border-2 border-blue-700 rounded-md hover:bg-blue-700 hover:ease-in ">
+                LOGIN
+              </button>
+            </Link>)} */}
+            
           </div>
         </div>
       </nav>

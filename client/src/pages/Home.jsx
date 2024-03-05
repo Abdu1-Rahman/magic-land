@@ -29,7 +29,7 @@ const LoaderComponent = ({ loading }) => (
   </div>
 );
 
-const Home = () => {
+const Home = ({isLoggedIn}) => {
   const slides = [slide1, slide2, slide3, slide4, slide5];
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -82,7 +82,7 @@ const Home = () => {
   return (
     <div className="overflow-hidden min-h-screen">
       <div className="mb-24">
-        <Navbar />
+        <Navbar isLoggedIn={isLoggedIn}/>
       </div>
       <WhatsappIcon />
       <div className="relative">
@@ -105,7 +105,7 @@ const Home = () => {
         {loading ? (
           <LoaderComponent loading={loading} />
         ) : (
-          <div className="card-container flex gap-6 sm:gap-10 md:gap-16 lg:gap-20 xl:gap-4 overflow-x-auto mx-1 p-6 whitespace-nowrap">
+          <div className="card-container flex sm:gap-10 md:gap-16 lg:gap-20 xl:gap-4 overflow-x-auto mx-1 p-6 whitespace-nowrap">
             {propertys.slice(0, 5).map((property, index) => (
               <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mt-5 px-2">
                 <div className="bg-white border border-gray-200 rounded-lg shadow">

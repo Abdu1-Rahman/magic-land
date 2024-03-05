@@ -40,7 +40,6 @@ router.get('/Getproperty',async (req,res) => {
         //  return   res.json({success: true, propertys})
         // }
     let propertys =await db.collection('property').find(query).toArray()
-    console.log(req.query)
     res.json({success: true, propertys})
 }catch (error) {
     console.log("Error in displaying properties",error);

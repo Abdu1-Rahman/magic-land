@@ -13,28 +13,39 @@ const Property = mongoose.model('Property', new mongoose.Schema({
 
 
 
-const verifyToken = (req, res, next) => {
+const verifyToken = async (req, res, next) => {
   const authHeader = req.headers['authorization'];
   
   if (!authHeader) {
     return res.status(403).json({ message: 'Token is not provided' });
   }
   const token = authHeader.split(' ')[1];
-
+  let decoded
   jwt.verify(token, 'abc', (err, decoded) => {
     if (err) {
       console.log(err);
       return res.status(401).json({ message: '  : Invalid token' });
+    }else{
+      decoded=decoded
     }
+    console.log(decoded)
     
-    req.decoded = decoded;
-    if(req.decoded.username!='admin'){
-      console.log('df');
-      return res.status(500).json({ message: 'Invalid token' });
-    }
-    console.log(req.decoded, 'asd');
-    next()
+    // req.decoded = decoded;
+   
+    
+    
+   
+
    });
+   let Loggedin = false
+   if(decoded){
+     Loggedin =true
+   }
+
+   res.decoded = Loggedin
+
+   next()
+
 };
 
 router.post('/login',async (req,res)=>{
@@ -46,7 +57,7 @@ router.post('/login',async (req,res)=>{
     console.log(token);
     let userid=response._id
     console.log(userid);
-    res.json({response,token,userid})
+    res.json({response,token,userid ,Loggedin :true})
    }
    else{
     res.json({status:false})
