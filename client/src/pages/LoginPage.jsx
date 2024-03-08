@@ -115,10 +115,10 @@ const Home = ({cookies}) => {
                     <img className="rounded-t-lg w-full" src={property.file} alt="" />
                   </a>
                   <div className="p-4">
-                    <p className='flex gap-8'>
+                    <div className='flex gap-8'>
                       <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">{property.Name}</h5><br/>
-                    <p className='flex text-gray-400 justify-end'><IoLocation className='text-blue-700 mt-1'/>{property.Location}</p>
-                    </p>
+                    <h6 className='flex text-gray-400 justify-end'><IoLocation className='text-blue-700 mt-1'/>{property.Location}</h6>
+                    </div>
                     <p className='text-gray-500'>{property.title}</p>
                     <hr />
                     <div className="flex mt-2 gap-3">

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://abdurahman:abdu1234@cluster0.ui2lqxf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect('mongodb://localhost:27017/REMS')
  .then(()=> console.log('connected'));
 let db=mongoose.connection
 

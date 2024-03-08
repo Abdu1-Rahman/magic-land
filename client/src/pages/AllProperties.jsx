@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import React, { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import axios from 'axios';
 import { IoLocation } from "react-icons/io5";
 import HashLoader from 'react-spinners/HashLoader';
@@ -19,50 +19,48 @@ const LoaderComponent = ({ loading }) => (
 
 const AllProperties = () => {
   const [propertys, setPropertys] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
+  const [input, setInput] = useState("");
 
-  const fetchdata = async () => {
+  const fetchdata = async (value) => {
     try {
-      setLoading(true); // Set loading to true before fetching data
-      let property = await axios.get(`https://magic-land-backend.vercel.app/Getproperty?Location=${title}`);
-      setPropertys(property.data.propertys);
-      setLoading(false); // Set loading back to false after data is fetched
+      setLoading(true);
+      let property = await axios.get(`http://localhost:5000/Getproperty`);
+      if (input !== "") {
+        let filteredProperties = property.data.propertys.filter(item => {
+          return item.Location.toLowerCase().includes(value.toLowerCase());
+        });
+        setPropertys(filteredProperties);
+      } else {
+        setPropertys(property.data.propertys);
+      }
+      setLoading(false);
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      setLoading(false);
     }
+  }
+
+  const handleChange = (value) => {
+    setInput(value);
+    fetchdata(value);
   }
 
   const reset = async () => {
     try {
       setLoading(true);
-      let property = await axios.get(`https://magic-land-backend.vercel.app/Getproperty`);
+      let property = await axios.get(`http://localhost:5000/Getproperty`);
       setPropertys(property.data.propertys);
+      setInput("");
       setLoading(false);
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      setLoading(false);
     }
   }
 
-  const titlesetting = (e) => {
-    setTitle(e.target.value);
-    console.log(title);
-  }
-
   useEffect(() => {
-    let fetchProperty = async () => {
-      try {
-        setLoading(true);
-        let property = await axios.get(`https://magic-land-backend.vercel.app/Getproperty`);
-        setPropertys(property.data.propertys);
-        setIsLoaded(true);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching property:', error);
-      }
-    };
-    fetchProperty();
+    fetchdata("");
   }, []);
 
   return (
@@ -75,29 +73,9 @@ const AllProperties = () => {
             id="default-search"
             type='text'
             placeholder='Search'
-            value={title}
-            onChange={titlesetting}
+            value={input}
+            onChange={(e) => handleChange(e.target.value)}
           />
-          <button
-            onClick={fetchdata}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-1 dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ml-2 h-12"
-          >
-            <svg
-              className="w-4 h-4 text-white"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-            </svg>
-          </button>
           <button onClick={reset} className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-1 dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ml-2 h-12' >Reset</button>
         </div>
         <div>
@@ -108,14 +86,14 @@ const AllProperties = () => {
               {propertys.map((property, index) => (
                 <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mt-5 px-2">
                   <div className="bg-white border border-gray-200 rounded-lg shadow">
-                    <a href="#">
+                    <div href="#">
                       <img className="rounded-t-lg w-full" src={property.file} alt="" />
-                    </a>
+                    </div>
                     <div className="p-4">
-                      <p className='flex gap-8'>
-                        <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">{property.Name}</h5><br />
-                        <p className='flex text-gray-400 justify-end'><IoLocation className='text-blue-700 mt-1' />{property.Location}</p>
-                      </p>
+                      <div className='flex gap-8'>
+                        <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">{property.Name}</h5>
+                        <h6 className='flex text-gray-400 justify-end'><IoLocation className='text-blue-700 mt-1' />{property.Location}</h6>
+                      </div>
                       <p className='text-gray-500'>{property.title}</p>
                       <hr />
                       <div className="flex mt-2 gap-3">

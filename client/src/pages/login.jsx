@@ -19,7 +19,7 @@ const Login = ({setLoggedIn}) => {
   let handlesubmit=async(event)=>{
     event.preventDefault()
 
-    let response=await axios.post('http://localhost:5000/admin/login',data);
+    let response = await axios.post('http://localhost:5000/admin/login', data);
     console.log(response.data.Loggedin)
     if(response.data.Loggedin){
       setLoggedIn(true)

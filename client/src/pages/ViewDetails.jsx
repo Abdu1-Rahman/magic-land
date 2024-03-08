@@ -25,18 +25,48 @@ const ViewDetails = () => {
   return (
     <>
     <Navbar />
-    <div className='flex py-28 bg-gray-100'>
-      <div className='flex bg-gray-200'>
-    <img
-         className='rounded-t-lg w-1/3'
+    <div className=' py-28 bg-gray-100'>
+      <div className='flex bg-gray-200 px-3'>
+       <img
+         className=' w-1/3 mb-5'
          src={data.file}
          alt=''
          />
-         <div className='ml-10'>
-         {data.description}
+         <div className='ml-10'>{data.Name} </div>
+         </div>
+         <div className='flex gap-4'>
+         <img
+         className='rounded-lg w-20'
+         src={data.file}
+         alt=''
+         />
 
+        <img
+         className='rounded-lg w-20'
+         src={data.file}
+         alt=''
+         />
+
+        <img
+         className='rounded-lg w-20'
+         src={data.file}
+         alt=''
+         />
+
+        <img
+         className='rounded-lg w-20'
+         src={data.file}
+         alt=''
+         />
+
+         <img
+         className='rounded-lg w-20'
+         src={data.file}
+         alt=''
+         />
          </div>
-         </div>
+         
+         
          </div>
     <Footer/>
      </>
