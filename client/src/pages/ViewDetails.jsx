@@ -26,13 +26,13 @@ const ViewDetails = () => {
     <>
     <Navbar />
     <div className=' py-28 bg-gray-100'>
-      <div className='flex bg-gray-200 px-3'>
+      <div className='flex  px-3'>
        <img
          className=' w-1/3 mb-5'
          src={data.file}
          alt=''
          />
-         <div className='ml-10'>{data.Name} </div>
+         <div className='ml-10 font-semibold text-5xl'>{data.Name} </div>
          </div>
          <div className='flex gap-4'>
          <img
