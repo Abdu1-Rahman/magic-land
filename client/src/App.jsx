@@ -19,6 +19,7 @@ import ViewDetails from './pages/ViewDetails';
 import AdminNavbar from './admincomponents/AdminNavbar';
 import LoginPage from '../src/pages/LoginPage'
 import PostProperty from './pages/PostProperty';
+import AddProperty from './adminpages/AddProperty';
 
 
 
@@ -51,6 +52,7 @@ function App() {
         <Route path='dashboard' element={<MainDashboard/>}/>
           <Route path='message' element={<Messages/>}/>
           <Route path='manageproperty' element={<ManageProperty/>}/>
+          <Route path='addproperty' element={<AddProperty/>}/>
           <Route path="update/:id" element={<Update/>}/>
           <Route path='users' element={<Users/>}/>
           <Route path='profile' element={<Profile/>}/>

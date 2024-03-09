@@ -4,7 +4,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { SlCalender } from 'react-icons/sl';
 import { IoPeopleOutline } from "react-icons/io5";
 import { LuMail } from "react-icons/lu";
-import { MdHome,MdOutlineRealEstateAgent  } from "react-icons/md";
+import { MdHome,MdOutlineRealEstateAgent,MdOutlineAddHomeWork  } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { IoLogOutOutline } from "react-icons/io5";
 import axios from 'axios';
@@ -47,7 +47,7 @@ const AdminNavbar = () => {
               <ul className='flex flex-col gap-3'>
                 <li><Link to={'/admin/dashboard'} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700 '><MdHome className='h-7 w-5 ' />Main Dashboard </Link></li>
                 <li><Link to={'/admin/manageproperty'} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700'><MdOutlineRealEstateAgent />Manage Property</Link></li>
-                <li><Link to={''} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700'><SlCalender className='w-4 h-3' />Bookings</Link></li>
+                <li><Link to={'/admin/addproperty'} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700'><MdOutlineAddHomeWork className='w-4 h-4' />Add Property</Link></li>
                 <li><Link to={'/admin/users'} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700'><IoPeopleOutline />Users</Link></li>
                 <hr className='w-52 bg-indigo-100 h-0.5' />
                 <li><Link to={'/admin/message'} className='flex items-center gap-2 text-gray-400 focus:text-indigo-700'><LuMail />Messages</Link></li>

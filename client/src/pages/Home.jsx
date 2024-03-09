@@ -89,7 +89,7 @@ const Home = ({isLoggedIn}) => {
         <img
           src={land2}
           alt="pics"
-          className="h-64 sm:h-96 w-full object-cover transition-transform duration-200 ease-in-out transform hover:scale-110 overflow-hidden"
+          className="h-56 sm:h-56 w-full object-cover transition-transform duration-200 ease-in-out transform hover:scale-110 overflow-hidden"
         />
       </div>
       <div className="ml-3">

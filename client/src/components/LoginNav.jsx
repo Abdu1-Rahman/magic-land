@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import MagicLand from '../assets/MagicLand.png';
 import '../components/Navbar.css';
 import { RiHomeHeartLine } from "react-icons/ri";
+import AnimCursor from './AnimCursor';
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(true);
@@ -32,6 +33,7 @@ const Navbar = () => {
 
   return (
     <div className={`shadow-md fixed w-full transition-transform duration-300 ease-in-out ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`} style={{ zIndex: 1000 }}>
+      {showNavbar && <AnimCursor />}
       <nav className="bg-white border-gray-200">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <img src={MagicLand} className='mb-2 md:mb-0 h-16 w-52 aspect-square object-contain' alt="Magic Land Logo" />
